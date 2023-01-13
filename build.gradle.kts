@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     war
@@ -23,9 +24,11 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.liquibase:liquibase-core")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("org.hibernate:hibernate-entitymanager:5.6.14.Final")
+    runtimeOnly("org.hibernate:hibernate-core:6.1.6.Final")
+    runtimeOnly("javax.xml.bind:jaxb-api:2.3.1")
+    runtimeOnly("com.h2database:h2:2.1.214")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
