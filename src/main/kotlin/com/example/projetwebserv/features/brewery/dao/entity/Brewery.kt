@@ -1,10 +1,17 @@
 package com.example.projetwebserv.features.brewery.dao.entity
 
-import org.jetbrains.exposed.sql.Table
+import com.example.projetwebserv.features.brewery.model.ViewBrewery
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.Id
 
-object Brewery :Table("breweries"){
-    val name = varchar("name", 50)
-    val city = varchar("city", 50)
-    val state = varchar("state", 2)
-    val id = integer("id")
-}
+@Entity
+data class Brewery(
+    @Id
+    @GeneratedValue
+    val id : Int,
+    val name : String,
+    val city : String,
+    val state : String
+)
+fun Brewery.toView() = ViewBrewery(id, name, city, state)
