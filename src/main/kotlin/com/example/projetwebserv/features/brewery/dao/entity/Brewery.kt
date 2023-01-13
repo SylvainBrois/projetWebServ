@@ -14,5 +14,5 @@ data class Brewery(
     val city : String,
     val state : String
 ) {
-    fun toView() = ViewBrewery(id, name,city, state)
+    fun toView() = ViewBrewery(id,name,city, state)
 }
