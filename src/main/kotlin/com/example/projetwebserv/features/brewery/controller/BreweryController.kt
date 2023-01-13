@@ -1,8 +1,25 @@
 package com.example.projetwebserv.features.brewery.controller
 
-import org.springframework.web.bind.annotation.RestController
+import com.example.projetwebserv.features.brewery.dao.entity.Brewery
+import com.example.projetwebserv.features.brewery.dao.entity.CreateBrewery
+import com.example.projetwebserv.features.brewery.dao.repository.BreweryRepository
+import com.example.projetwebserv.features.brewery.model.ViewBrewery
+import org.springframework.web.bind.annotation.*
 
 @RestController
-class BreweryController {
+@RequestMapping("brewery")
+class BreweryController(val breweryRepository: BreweryRepository) {
+    @GetMapping
+    fun findAll(): Iterable<ViewBrewery> =
+        breweryRepository.search("Brewery").map{ it.toView()}
 
+    @PostMapping
+    fun create(@RequestBody createBrewery: CreateBrewery): ViewBrewery =
+        breweryRepository.save(
+            Brewery(
+                name = createBrewery.name,
+                city = createBrewery.city,
+                state = createBrewery.state
+            )
+        ).toView()
 }
