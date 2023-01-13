@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 class BreweryController(val breweryRepository: BreweryRepository) {
     @GetMapping
     fun findAll(): Iterable<ViewBrewery> =
-        breweryRepository.search("Brewery").map{ it.toView()}
+        breweryRepository.findAll().map{ it.toView()}
 
     @PostMapping
     fun create(@RequestBody createBrewery: CreateBrewery): ViewBrewery =

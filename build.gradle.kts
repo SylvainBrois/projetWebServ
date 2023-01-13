@@ -5,6 +5,7 @@ plugins {
     war
     id("org.springframework.boot") version "3.0.1"
     id("io.spring.dependency-management") version "1.1.0"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.7.22"
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
 }
@@ -18,7 +19,8 @@ repositories {
 }
 
 dependencies {
-
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlin:kotlin-noarg:1.7.22")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -31,6 +33,8 @@ dependencies {
     runtimeOnly("com.h2database:h2:2.1.214")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
+apply(plugin = "org.jetbrains.kotlin.plugin.noarg")
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
