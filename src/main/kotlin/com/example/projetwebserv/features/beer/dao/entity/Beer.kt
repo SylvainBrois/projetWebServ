@@ -1,6 +1,9 @@
 package com.example.projetwebserv.features.beer.dao.entity
-import com.example.projetwebserv.features.beer.model.ViewBeer;
 import com.example.projetwebserv.features.brewery.dao.entity.Brewery;
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.JsonUnwrapped
 import jakarta.persistence.*
 
 @Entity
@@ -13,11 +16,12 @@ data class Beer(
     val name : String = "",
     val style : String= "",
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
     @JoinColumn(name = "brewery_id")
-    val brewery : Brewery? = null,
+    val _brewery : Brewery? = null,
     val ounces : Float = 0.0f
 ){
-    fun toView() = ViewBeer(id, abv, ibu, name, style, brewery?.id, ounces)
+    val brewery get() = _brewery?.id
 }
 
 
