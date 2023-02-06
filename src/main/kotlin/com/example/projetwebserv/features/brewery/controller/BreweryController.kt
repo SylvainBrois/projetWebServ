@@ -1,5 +1,6 @@
 package com.example.projetwebserv.features.brewery.controller
 
+import com.example.projetwebserv.features.beer.dao.entity.Beer
 import com.example.projetwebserv.features.brewery.dao.entity.Brewery
 import com.example.projetwebserv.features.brewery.dao.entity.CreateBrewery
 import com.example.projetwebserv.features.brewery.dao.repository.BreweryRepository

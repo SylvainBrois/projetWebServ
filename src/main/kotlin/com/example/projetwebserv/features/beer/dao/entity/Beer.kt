@@ -1,22 +1,24 @@
 package com.example.projetwebserv.features.beer.dao.entity
 import com.example.projetwebserv.features.beer.model.ViewBeer;
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import com.example.projetwebserv.features.brewery.dao.entity.Brewery;
+import jakarta.persistence.*
 
 @Entity
 data class Beer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Int,
-    val abv : Float,
-    val ibu : Float?,
-    val name : String,
-    val style : String,
-    val breweryId : Int,
-    val ounces : Float
-)
+    val id : Int = 0,
+    val abv : Float = 0.0f,
+    val ibu : Float? = 0.0f,
+    val name : String = "",
+    val style : String= "",
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "brewery_id")
+    val brewery : Brewery? = null,
+    val ounces : Float = 0.0f
+){
+    fun toView() = ViewBeer(id, abv, ibu, name, style, brewery?.id, ounces)
+}
 
-fun Beer.toView() = ViewBeer(id, abv, ibu, name, style, breweryId, ounces)
+
    
