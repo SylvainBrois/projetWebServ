@@ -18,9 +18,8 @@ class BeerController(val beerRepository: BeerRepository) {
 
     @GetMapping("/{id}")
     fun index(@PathVariable id: Long): ResponseEntity<Any> {
-        val beer : Beer? = beerRepository.findById(id).orElse(null)
-        if (beer==null)
-            return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
+        val beer : Beer = beerRepository.findById(id).orElse(null)
+                ?: return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
         return ResponseEntity.ok(beer)
     }
 
@@ -49,9 +48,9 @@ class BeerController(val beerRepository: BeerRepository) {
     }
 
     @PutMapping("/{id}",consumes = ["application/json"])
-    fun update(@PathVariable id: Long,@RequestBody data:CreateBeer): ResponseEntity<Any>{
-        val beer : Beer = beerRepository.findById(id).orElse(null)
-                ?: return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
+    fun update(@PathVariable id: Long,@RequestBody data:CreateBeer): ResponseEntity<Any> {
+        val beer: Beer = beerRepository.findById(id).orElse(null)
+                ?: return ResponseEntity(hashMapOf<String, String>(Pair("beer", "not found")), HttpStatus.NOT_FOUND)
         try {
             return ResponseEntity.ok(beerRepository.save(Beer(
                     id = id,
@@ -62,10 +61,9 @@ class BeerController(val beerRepository: BeerRepository) {
                     _brewery = Brewery(id = data.brewery),
                     ounces = data.ounces
             )))
-        } catch (e : Exception){
-            return ResponseEntity(hashMapOf<String,String>(Pair("beer","not updated")), HttpStatus.NOT_MODIFIED)
+        } catch (e: Exception) {
+            return ResponseEntity(hashMapOf<String, String>(Pair("beer", "not updated")), HttpStatus.NOT_MODIFIED)
         }
     }
-
 
 }
