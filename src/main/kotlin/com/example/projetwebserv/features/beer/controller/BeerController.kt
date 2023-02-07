@@ -9,7 +9,6 @@ import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("beer")
@@ -22,9 +21,8 @@ class BeerController() {
 
     @GetMapping("/{id}")
     fun index(@PathVariable id: Long): ResponseEntity<Any> {
-        val beer : Beer? = beerRepository.findById(id).orElse(null)
-        if (beer==null)
-            return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
+        val beer : Beer = beerRepository.findById(id).orElse(null)
+                ?: return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
         return ResponseEntity.ok(beer)
     }
 
@@ -53,9 +51,9 @@ class BeerController() {
     }
 
     @PutMapping("/{id}",consumes = ["application/json"])
-    fun update(@PathVariable id: Long,@RequestBody data:CreateBeer): ResponseEntity<Any>{
-        val beer : Beer = beerRepository.findById(id).orElse(null)
-                ?: return ResponseEntity(hashMapOf<String,String>(Pair("beer","not found")), HttpStatus.NOT_FOUND)
+    fun update(@PathVariable id: Long,@RequestBody data:CreateBeer): ResponseEntity<Any> {
+        val beer: Beer = beerRepository.findById(id).orElse(null)
+                ?: return ResponseEntity(hashMapOf<String, String>(Pair("beer", "not found")), HttpStatus.NOT_FOUND)
         try {
             return ResponseEntity.ok(beerRepository.save(Beer(
                     id = id,
@@ -66,10 +64,9 @@ class BeerController() {
                     _brewery = Brewery(id = data.brewery),
                     ounces = data.ounces
             )))
-        } catch (e : Exception){
-            return ResponseEntity(hashMapOf<String,String>(Pair("beer","not updated")), HttpStatus.NOT_MODIFIED)
+        } catch (e: Exception) {
+            return ResponseEntity(hashMapOf<String, String>(Pair("beer", "not updated")), HttpStatus.NOT_MODIFIED)
         }
     }
-
 
 }

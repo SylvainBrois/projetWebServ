@@ -27,6 +27,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation ("org.apache.commons:commons-csv:1.7")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.hibernate:hibernate-entitymanager:5.6.14.Final")
     runtimeOnly("org.hibernate:hibernate-core:6.1.6.Final")
