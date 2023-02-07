@@ -3,14 +3,15 @@ package com.example.projetwebserv.features.brewery.controller
 import com.example.projetwebserv.features.brewery.dao.entity.Brewery
 import com.example.projetwebserv.features.brewery.dao.entity.CreateBrewery
 import com.example.projetwebserv.features.brewery.dao.repository.BreweryRepository
-import org.springframework.dao.EmptyResultDataAccessException
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("brewery")
-class BreweryController(val breweryRepository: BreweryRepository) {
+class BreweryController() {
+    @Autowired
+    lateinit var breweryRepository: BreweryRepository
+
     @GetMapping
     fun findAll(): Iterable<Brewery> =
         breweryRepository.findAll()

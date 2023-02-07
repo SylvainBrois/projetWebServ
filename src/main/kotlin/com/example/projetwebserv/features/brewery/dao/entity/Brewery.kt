@@ -15,8 +15,5 @@ data class Brewery(
     val city : String = "",
     val state : String = "",
     @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY, mappedBy = "_brewery")
-    @JsonBackReference
-    private val _beers: MutableList<Beer> = mutableListOf<Beer>()
-) {
-    val beers get() = _beers.toList()
-}
+    val beers: MutableList<Beer> = mutableListOf<Beer>()
+)

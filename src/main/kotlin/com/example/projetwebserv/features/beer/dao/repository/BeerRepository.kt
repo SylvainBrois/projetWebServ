@@ -1,7 +1,10 @@
 package com.example.projetwebserv.features.brewery.dao.repository
 
 import com.example.projetwebserv.features.beer.dao.entity.Beer
-import org.springframework.data.repository.CrudRepository
+import com.example.projetwebserv.features.brewery.dao.entity.Brewery
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface BeerRepository : CrudRepository<Beer, Long> {
+
+@Repository
+interface BeerRepository : JpaRepository<Beer, Long> {
 }

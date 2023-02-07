@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    implementation ("org.apache.commons:commons-csv:1.7")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("org.jetbrains.kotlin:kotlin-noarg:1.7.22")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

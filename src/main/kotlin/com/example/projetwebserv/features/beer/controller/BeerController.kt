@@ -4,6 +4,7 @@ import com.example.projetwebserv.features.beer.dao.entity.Beer
 import com.example.projetwebserv.features.beer.dao.entity.CreateBeer
 import com.example.projetwebserv.features.brewery.dao.entity.Brewery
 import com.example.projetwebserv.features.brewery.dao.repository.BeerRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("beer")
-class BeerController(val beerRepository: BeerRepository) {
+class BeerController() {
+    @Autowired
+    lateinit var beerRepository: BeerRepository
     @GetMapping
     fun findAll(): Iterable<Beer> =
             beerRepository.findAll()
