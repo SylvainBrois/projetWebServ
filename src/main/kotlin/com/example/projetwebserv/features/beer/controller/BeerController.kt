@@ -29,17 +29,21 @@ class BeerController() {
     }
 
     @PostMapping
-    fun create(@RequestBody createBeer: CreateBeer): Beer =
+    fun create(@RequestBody createBeer: CreateBeer): ResponseEntity<Any>{
+        return ResponseEntity.status(HttpStatus.CREATED).body(
             beerRepository.save(
-                    Beer(
-                            abv = createBeer.abv,
-                            ibu = createBeer.ibu,
-                            name = createBeer.name,
-                            style = createBeer.style,
-                            _brewery = Brewery(id = createBeer.brewery),
-                            ounces = createBeer.ounces
-                    )
+                Beer(
+                    abv = createBeer.abv,
+                    ibu = createBeer.ibu,
+                    name = createBeer.name,
+                    style = createBeer.style,
+                    _brewery = Brewery(id = createBeer.brewery),
+                    ounces = createBeer.ounces
+                )
             )
+        )
+    }
+
 
     @DeleteMapping(value = ["/{id}"])
     fun delete(@PathVariable id: Long):ResponseEntity<Any> {
