@@ -27,11 +27,15 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.0")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.0")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.hibernate:hibernate-entitymanager:5.6.14.Final")
     runtimeOnly("org.hibernate:hibernate-core:6.1.6.Final")
     runtimeOnly("javax.xml.bind:jaxb-api:2.3.1")
     runtimeOnly("com.h2database:h2:2.1.214")
+
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
